@@ -32,12 +32,17 @@ const Page: React.FC = () => {
     );
   }
 
+  // 投稿データを投稿日順（新しい順）にソート
+  const sortedPosts = [...posts].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt)
+  );
+
   // 投稿データが取得できたら「投稿記事の一覧」を出力
   return (
     <main>
       <div className="mb-2 text-2xl font-bold">Main</div>
       <div className="space-y-3">
-        {posts.map((post) => (
+        {sortedPosts.map((post) => (
           <PostSummary key={post.id} post={post} />
         ))}
       </div>
